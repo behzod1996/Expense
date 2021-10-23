@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">android-mvvm-room-coroutine-flow</string>
+    <string name="Title">Expense manager</string>
+    <string name="txt_title_item">Transportation</string>
+    <string name="txt_type_item">Income</string>
+    <string name="txt_amount_transaction">+$10</string>
+    <string name="txt_date_transaction">10/23/2021</string>
+    <string name="txt_total_title">Total balance</string>
+    <string name="txt_total_amount">$ 4</string>
+    <string name="txt_income_title">Income</string>
+    <string name="txt_expense_title">Expense</string>
+
+</resources>
