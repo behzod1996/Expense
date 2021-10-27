@@ -1,12 +1,12 @@
 package com.example.expense.data.local.dao
 
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Update
+import androidx.room.*
 import com.example.expense.data.local.entity.Transaction
 import kotlinx.coroutines.flow.Flow
 
+// DAO provides common operations with data.
+
+@Dao
 interface TransactionDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(transaction: Transaction)
@@ -17,6 +17,9 @@ interface TransactionDao {
     @Delete
     suspend fun delete(transaction: Transaction)
 
+    @Query("SELECT * FROM transaction_table ORDER BY date")
     fun getAllTransaction(): Flow<List<Transaction>>
+
+    @Query("SELECT * FROM transaction_table WHERE id = :id")
     fun getTransactionById(id: Int): Flow<Transaction>
 }
