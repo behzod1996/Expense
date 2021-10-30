@@ -2,16 +2,22 @@ package com.example.expense
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import com.example.expense.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navHostFragment: NavHostFragment
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
         setupNavigation()
+        onClickNavigate()
     }
 
     // setupNavigation():
@@ -30,6 +36,15 @@ class MainActivity : AppCompatActivity() {
         navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment?
             ?: return
+
+    }
+    // onClickNavigate():
+    // This purpose of function is navigated from home fragment to add fragment
+
+    private fun onClickNavigate() = with(binding) {
+        fab.setOnClickListener {
+            NavHostFragment.findNavController(navHostFragment).navigate(R.id.action_homeFragment_to_addFragment)
+        }
     }
 
 
